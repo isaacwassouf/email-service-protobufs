@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "./protosbufs";
+option go_package = "./email_management-service";
 
 package protos;
 
