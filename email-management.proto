@@ -1,22 +1,23 @@
 syntax = "proto3";
 
-option go_package = "./email_management-service";
+option go_package = "./email-management-service";
 
 package protos;
 
-// The email manager
 service EmailManager {
-  // Send an email
-  rpc SendEmail (EmailRequest) returns (EmailResponse) {}
+  // Send an email to verify the email address
+  rpc SendVerifyEmailEmail (SendEmailRequest) returns (SendEmailResponse) {}
+  // Send an email to verify the user's login
+  rpc SendMFAEmail (SendEmailRequest) returns (SendEmailResponse) {}
+  // Send an email to reset the user's password
+  rpc SendPasswordResetEmail (SendEmailRequest) returns (SendEmailResponse) {}
 }
 
-message EmailRequest {
+message SendEmailRequest {
   string to = 1;
-  string subject = 2;
-  string body = 3;
+  string token = 2;
 }
 
-message EmailResponse {
-  bool success = 1;
-  string message = 2;
+message SendEmailResponse {
+  string message = 1;
 }
