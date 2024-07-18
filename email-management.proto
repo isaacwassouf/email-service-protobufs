@@ -11,6 +11,10 @@ service EmailManager {
   rpc SendMFAEmail (SendEmailRequest) returns (SendEmailResponse) {}
   // Send an email to reset the user's password
   rpc SendPasswordResetEmail (SendEmailRequest) returns (SendEmailResponse) {}
+  // Set SMTP credentials
+  rpc SetSMTPCredentials (SetSMTPCredentialsRequest) returns (SetSMTPCredentialsResponse) {}
+  // Set email verification template
+  rpc SetEmailVerificationTemplate (SetEmailTemplateRequest) returns (SetEmailTemplateResponse) {}
 }
 
 message SendEmailRequest {
@@ -19,5 +23,27 @@ message SendEmailRequest {
 }
 
 message SendEmailResponse {
+  string message = 1;
+}
+
+message SetSMTPCredentialsRequest {
+  string username = 1;
+  string password = 2;
+  string host = 3;
+  int32 port = 4;
+  string sender = 5;
+}
+
+message SetSMTPCredentialsResponse {
+  string message = 1;
+}
+
+message SetEmailTemplateRequest {
+  string subject = 1;
+  string rediect_url = 2;
+  string body = 3;
+}
+
+message SetEmailTemplateResponse {
   string message = 1;
 }
