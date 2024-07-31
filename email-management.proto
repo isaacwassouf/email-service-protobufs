@@ -13,8 +13,13 @@ service EmailManager {
   rpc SendPasswordResetEmail (SendEmailRequest) returns (SendEmailResponse) {}
   // Set SMTP credentials
   rpc SetSMTPCredentials (SetSMTPCredentialsRequest) returns (SetSMTPCredentialsResponse) {}
+  // Get SMTP credentials
+  rpc GetSMTPCredentials (google.protobuf.Empty) returns (SetSMTPCredentialsRequest) {}
+
   // Set email verification template
-  rpc SetEmailVerificationTemplate (SetEmailTemplateRequest) returns (SetEmailTemplateResponse) {}
+  rpc SetEmailTemplate (SetEmailTemplateRequest) returns (SetEmailTemplateResponse) {}
+
+  rpc GetEmailTemplate (GetEmailTemaplateRequest) returns (GetEmailTemaplateResponse) {}
 }
 
 message SendEmailRequest {
@@ -38,12 +43,30 @@ message SetSMTPCredentialsResponse {
   string message = 1;
 }
 
+enum EmailType {
+  EMAIL_VERIFICATION = 0;
+  MFA = 1;
+  PASSWORD_RESET = 2;
+}
+
 message SetEmailTemplateRequest {
   string subject = 1;
   string rediect_url = 2;
   string body = 3;
+  EmailType email_type = 4;
 }
 
 message SetEmailTemplateResponse {
   string message = 1;
 }
+
+message GetEmailTemaplateRequest {
+  EmailType email_type = 1;
+}
+
+message GetEmailTemaplateResponse {
+  string subject = 1;
+  string rediect_url = 2;
+  string body = 3;
+}
+
