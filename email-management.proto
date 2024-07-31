@@ -15,10 +15,9 @@ service EmailManager {
   rpc SetSMTPCredentials (SetSMTPCredentialsRequest) returns (SetSMTPCredentialsResponse) {}
   // Get SMTP credentials
   rpc GetSMTPCredentials (google.protobuf.Empty) returns (SetSMTPCredentialsRequest) {}
-
-  // Set email verification template
+  // Set email template
   rpc SetEmailTemplate (SetEmailTemplateRequest) returns (SetEmailTemplateResponse) {}
-
+  // Get email template
   rpc GetEmailTemplate (GetEmailTemaplateRequest) returns (GetEmailTemaplateResponse) {}
 }
 
