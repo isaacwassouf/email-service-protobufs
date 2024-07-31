@@ -52,7 +52,7 @@ enum EmailType {
 
 message SetEmailTemplateRequest {
   string subject = 1;
-  string rediect_url = 2;
+  string redirect_url = 2;
   string body = 3;
   EmailType email_type = 4;
 }
@@ -67,7 +67,7 @@ message GetEmailTemaplateRequest {
 
 message GetEmailTemaplateResponse {
   string subject = 1;
-  string rediect_url = 2;
+  string redirect_url = 2;
   string body = 3;
 }
 
